@@ -1,0 +1,101 @@
+package main;
+
+import java.util.Arrays;
+
+import object.ObjectBench;
+import object.ObjectComputer;
+import object.ObjectDoor;
+import object.ObjectKey;
+import object.ObjectLockedDoor;
+import object.ObjectSign;
+
+import entity.NPC_Guide;
+import entity.NPC_Principal;
+import entity.NPC_Sign;
+
+public class AssetSetter {
+	
+	GamePanel panel;
+	
+	
+	public AssetSetter(GamePanel panel) {
+		this.panel = panel;
+	}
+	
+	public void setObject() {
+		int mapNum;
+		
+			mapNum = 1;
+			Arrays.fill(panel.obj[mapNum], null);
+			panel.obj[mapNum][0] = new ObjectBench(panel);
+			panel.obj[mapNum][0].worldX = 4 * panel.tileSize;
+			panel.obj[mapNum][0].worldY = 13 * panel.tileSize;
+			
+			panel.obj[mapNum][1] = new ObjectBench(panel);
+			panel.obj[mapNum][1].worldX = 4 * panel.tileSize;
+			panel.obj[mapNum][1].worldY = 14 * panel.tileSize;
+			
+			panel.obj[mapNum][2] = new ObjectDoor(panel, "Door (Glint)");
+			panel.obj[mapNum][2].worldX = 9 * panel.tileSize;
+			panel.obj[mapNum][2].worldY = 7 * panel.tileSize;
+			
+			panel.obj[mapNum][3] = new ObjectDoor(panel, "Door");
+			panel.obj[mapNum][3].worldX = 9 * panel.tileSize;
+			panel.obj[mapNum][3].worldY = 8 * panel.tileSize;
+			
+			panel.obj[mapNum][4] = new ObjectDoor(panel, "Door (Glint)");
+			panel.obj[mapNum][4].worldX = 9 * panel.tileSize;
+			panel.obj[mapNum][4].worldY = 19 * panel.tileSize;
+			
+			panel.obj[mapNum][5] = new ObjectDoor(panel, "Door");
+			panel.obj[mapNum][5].worldX = 9 * panel.tileSize;
+			panel.obj[mapNum][5].worldY = 20 * panel.tileSize;
+			
+			panel.obj[mapNum][6] = new ObjectKey(panel);
+			panel.obj[mapNum][6].worldX = 10 * panel.tileSize;
+			panel.obj[mapNum][6].worldY = 48 * panel.tileSize;			
+
+			mapNum = 2;
+			Arrays.fill(panel.obj[mapNum], null);
+			panel.obj[mapNum][0] = new ObjectComputer(panel);
+			panel.obj[mapNum][0].worldX = 4 * panel.tileSize;
+			panel.obj[mapNum][0].worldY = 13 * panel.tileSize;
+			
+			panel.obj[mapNum][1] = new ObjectDoor(panel, "Door (Glint)");
+			panel.obj[mapNum][1].worldX = 0 * panel.tileSize;
+			panel.obj[mapNum][1].worldY = 2 * panel.tileSize;
+			
+			panel.obj[mapNum][2] = new ObjectDoor(panel, "Door");
+			panel.obj[mapNum][2].worldX = 0 * panel.tileSize;
+			panel.obj[mapNum][2].worldY = 3 * panel.tileSize;
+			
+			panel.obj[mapNum][3] = new ObjectDoor(panel, "Door (Glint)");
+			panel.obj[mapNum][3].worldX = 0 * panel.tileSize;
+			panel.obj[mapNum][3].worldY = 46 * panel.tileSize;
+			
+			panel.obj[mapNum][4] = new ObjectDoor(panel, "Door");
+			panel.obj[mapNum][4].worldX = 0 * panel.tileSize;
+			panel.obj[mapNum][4].worldY = 47 * panel.tileSize;
+			
+			panel.obj[mapNum][5] = new ObjectLockedDoor(panel, "Locked Door");
+			panel.obj[mapNum][5].worldX = 16 * panel.tileSize;
+			panel.obj[mapNum][5].worldY = 16 * panel.tileSize;
+		
+	}
+	
+	public void setNPC() {
+			panel.npc[1][0] = new NPC_Guide(panel);
+			panel.npc[1][0].worldX = 4 * panel.tileSize;
+			panel.npc[1][0].worldY = 6 * panel.tileSize;
+
+
+			panel.npc[2][0] = new NPC_Principal(panel);
+			panel.npc[2][0].worldX = 5 * panel.tileSize;
+			panel.npc[2][0].worldY = 17 * panel.tileSize;
+			
+			panel.npc[2][1] = new NPC_Sign(panel);
+			panel.npc[2][1].worldX = 20 * panel.tileSize;
+			panel.npc[2][1].worldY = 1 * panel.tileSize;
+	}
+	
+}

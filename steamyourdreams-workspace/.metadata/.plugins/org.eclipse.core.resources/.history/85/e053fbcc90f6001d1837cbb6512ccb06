@@ -1,0 +1,88 @@
+package main;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
+import javax.swing.JPanel;
+
+import entity.Player;
+import tile.TileManager;
+
+public class GamePanel extends JPanel implements Runnable {
+
+		final int size = 16; // creates a 16 x 16 tile
+		final int scale = 3;
+		public final int tileSize = size * scale; // creates a 48 x 48 area for character size
+		// creates a 16 x 12 grid
+		public final int screenCols = 16;
+		public final int screenRows = 12;
+		// creates a 768 x 576 pixel screen
+		public final int width = tileSize * screenCols;
+		public final int height = tileSize * screenRows;
+		
+		public final int worldCols = 50;
+		public final int worldRows = 50;
+		public final int worldWidth = tileSize * worldCols;
+		public final int worldHeight = tileSize * worldRows;
+		TileManager tiles = new TileManager(this);
+		KeyInput input = new KeyInput();
+		Thread gameThread;
+		public CollisionChecker check = new CollisionChecker(this);
+		
+		public Player player = new Player(this, input);
+		
+		//sets default position
+		int playerX = 100, playerY = 100;
+		int playerSpeed = 5;
+		
+		int FPS = 60;
+		
+		public GamePanel() {
+			this.setPreferredSize(new Dimension(width, height));
+			this.setBackground(Color.black);
+			this.setDoubleBuffered(true);
+			this.addKeyListener(input);
+			this.setFocusable(true);
+		}
+		
+		public void startGame() {
+			gameThread = new Thread(this);
+			gameThread.start();
+		}
+
+		public void run() {
+			double drawInterval = 1000000000/FPS;
+			double delta = 0;
+			long lastTime = System.nanoTime();
+			long currentTime;
+			
+			while (gameThread != null) {
+				currentTime = System.nanoTime();
+				delta += (currentTime - lastTime) / drawInterval;
+				lastTime = currentTime;
+				
+				if (delta >= 1) {
+					update();
+					repaint();
+					delta--;
+				}
+			}
+		}
+		
+		public void update() {
+			player.update();
+		}
+		
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			
+			Graphics2D g2 = (Graphics2D)g;
+			
+			tiles.draw(g2);
+			player.draw(g2);
+			
+			g2.dispose();
+		}
+}

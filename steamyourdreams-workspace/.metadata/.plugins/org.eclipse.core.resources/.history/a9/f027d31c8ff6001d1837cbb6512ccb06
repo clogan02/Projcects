@@ -1,0 +1,64 @@
+package main;
+
+import entity.Entity;
+
+public class CollisionChecker {
+	GamePanel panel;
+	
+	public CollisionChecker(GamePanel panel) {
+		this.panel = panel;
+	}
+	
+	public void checkTile(Entity entity) {
+		int entityLeftX = entity.worldX + entity.solidArea.x;
+		int entityRightX = entityLeftX + entity.solidArea.width;
+		int entityTopY = entity.worldY + entity.solidArea.y;
+		int entityBottomY = entityTopY + entity.solidArea.height;
+		
+		int entityLeftCol = entityLeftX/panel.tileSize;
+		int entityRightCol = entityRightX/panel.tileSize;
+		int entityTopRow = entityTopY/panel.tileSize;
+		int entityBottomRow = entityBottomY/panel.tileSize;
+		
+		int tile1, tile2;
+		
+		switch (entity.direction) {
+		case "up":
+			entityTopRow = (entityTopY - entity.speed)/panel.tileSize;
+			tile1 = panel.tiles.tileNum[entityLeftCol][entityTopRow];
+			tile2 = panel.tiles.tileNum[entityRightCol][entityTopRow];
+			
+			if(panel.tiles.tile[tile1].collision == true || panel.tiles.tile[tile2].collision == true) {
+				entity.collided = true;
+			}
+			break;
+		case "down":
+			entityBottomRow = (entityTopY + entity.speed)/panel.tileSize;
+			tile1 = panel.tiles.tileNum[entityLeftCol][entityBottomRow];
+			tile2 = panel.tiles.tileNum[entityRightCol][entityBottomRow];
+			
+			if(panel.tiles.tile[tile1].collision == true || panel.tiles.tile[tile2].collision == true) {
+				entity.collided = true;
+			}
+			break;
+		case "left":
+			entityLeftCol = (entityTopY - entity.speed)/panel.tileSize;
+			tile1 = panel.tiles.tileNum[entityLeftCol][entityTopRow];
+			tile2 = panel.tiles.tileNum[entityLeftCol][entityBottomRow];
+			
+			if(panel.tiles.tile[tile1].collision == true || panel.tiles.tile[tile2].collision == true) {
+				entity.collided = true;
+			}
+			break;
+		case "right":
+			entityRightCol = (entityTopY + entity.speed)/panel.tileSize;
+			tile1 = panel.tiles.tileNum[entityRightCol][entityTopRow];
+			tile2 = panel.tiles.tileNum[entityRightCol][entityBottomRow];
+			
+			if(panel.tiles.tile[tile1].collision == true || panel.tiles.tile[tile2].collision == true) {
+				entity.collided = true;
+			}
+			break;
+		}
+	}
+}

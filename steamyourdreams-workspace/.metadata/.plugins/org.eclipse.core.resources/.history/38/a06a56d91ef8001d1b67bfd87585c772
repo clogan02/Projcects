@@ -1,0 +1,18 @@
+package entity;
+
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+
+//parent of playerClass
+public class Entity {
+	public int worldX, worldY;
+	public int speed;
+	public int spriteCounter = 0, spriteNumber = 1;
+	public boolean collided = false;
+	
+	public BufferedImage walkUp1, walkUp2, walkDown1, walkDown2, walkLeft, walkRight, idleUp, idleDown, idleLeft, idleRight;
+	public Rectangle solidArea;
+	public int defaultSolidX, defaultSolidY;
+	public String direction;
+	
+}

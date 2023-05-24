@@ -1,0 +1,26 @@
+package object;
+
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import main.GamePanel;
+
+public class ObjectSign extends SuperObject {
+	
+	GamePanel panel;
+	
+	public ObjectSign(GamePanel panel, String object) {
+		this.panel = panel;
+		name = object;
+			
+		try {
+			image = ImageIO.read(getClass().getResourceAsStream("/objects/Sign.png"));
+			tool.scaleImage(image, panel.tileSize, panel.tileSize);
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		
+		hasCollision = true;
+	}
+}

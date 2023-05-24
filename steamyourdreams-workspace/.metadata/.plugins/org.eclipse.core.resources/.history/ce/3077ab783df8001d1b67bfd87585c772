@@ -1,0 +1,31 @@
+package entity;
+
+import main.GamePanel;
+
+public class NPC_Guide extends Entity {
+	
+	public NPC_Guide(GamePanel panel) {
+		super(panel);
+		
+		direction = "down";
+		speed = 0;
+		
+		getNPCImage();
+	}
+	
+	public void getNPCImage() {
+//		walkUp1 = setup("/player/SYD Sprite Walk Up 1.png");
+//		walkUp2 = setup("/player/SYD Sprite Walk Up 2.png");
+//		
+//		walkDown1 = setup("/player/SYD Sprite Walk Down 1.png");
+//		walkDown2 = setup("/player/SYD Sprite Walk Down 2.png");
+//			
+//		walkLeft = setup("/player/SYD Walk Left.png");
+//		walkRight = setup("/player/SYD Walk Right.png");
+//			
+//		idleUp = setup("/player/SYD Idle Up.png");
+//		idleLeft = setup("/player/SYD Idle Left.png");
+//		idleRight = setup("/player/SYD Idle Right.png");
+		idleDown = setup("/player/Trainer Idle Down.gif");
+	}
+}

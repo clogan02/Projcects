@@ -1,0 +1,79 @@
+package main;
+
+import java.util.Arrays;
+
+import object.ObjectBench;
+import object.ObjectComputer;
+import object.ObjectDoor;
+import object.ObjectKey;
+import object.ObjectSign;
+
+public class AssetSetter {
+	
+	GamePanel panel;
+	
+	
+	public AssetSetter(GamePanel panel) {
+		this.panel = panel;
+	}
+	
+	public void setObject() {
+		Arrays.fill(panel.obj, null);
+
+		if (panel.currMap == 1) {
+			panel.obj[0] = new ObjectBench(panel);
+			panel.obj[0].worldX = 4 * panel.tileSize;
+			panel.obj[0].worldY = 13 * panel.tileSize;
+			
+			panel.obj[1] = new ObjectBench(panel);
+			panel.obj[1].worldX = 4 * panel.tileSize;
+			panel.obj[1].worldY = 14 * panel.tileSize;
+			
+			panel.obj[2] = new ObjectSign(panel, "Sign 1");
+			panel.obj[2].worldX = 4 * panel.tileSize;
+			panel.obj[2].worldY = 6 * panel.tileSize;
+			
+			panel.obj[3] = new ObjectDoor();
+			panel.obj[3].hasGlint = true;
+			panel.obj[3].worldX = 9 * panel.tileSize;
+			panel.obj[3].worldY = 7 * panel.tileSize;
+			
+			panel.obj[4] = new ObjectDoor();
+			panel.obj[4].hasGlint = false;
+			panel.obj[4].worldX = 9 * panel.tileSize;
+			panel.obj[4].worldY = 8 * panel.tileSize;
+			
+			panel.obj[5] = new ObjectDoor();
+			panel.obj[5].hasGlint = true;
+			panel.obj[5].worldX = 9 * panel.tileSize;
+			panel.obj[5].worldY = 19 * panel.tileSize;
+			
+			panel.obj[6] = new ObjectDoor();
+			panel.obj[6].hasGlint = false;
+			panel.obj[6].worldX = 9 * panel.tileSize;
+			panel.obj[6].worldY = 20 * panel.tileSize;
+			
+			panel.obj[7] = new ObjectKey(panel);
+			panel.obj[7].worldX = 4 * panel.tileSize;
+			panel.obj[7].worldY = 5 * panel.tileSize;			
+		}
+		
+		else if (panel.currMap == 2) {
+			panel.obj[0] = new ObjectComputer();
+			panel.obj[0].worldX = 4 * panel.tileSize;
+			panel.obj[0].worldY = 5 * panel.tileSize;
+			
+			panel.obj[1] = new ObjectDoor();
+			panel.obj[1].hasGlint = false;
+			panel.obj[1].worldX = 0 * panel.tileSize;
+			panel.obj[1].worldY = 3 * panel.tileSize;
+			
+			panel.obj[2] = new ObjectDoor();
+			panel.obj[2].hasGlint = true;
+			panel.obj[2].worldX = 0 * panel.tileSize;
+			panel.obj[2].worldY = 4 * panel.tileSize;
+		}
+		
+	}
+	
+}

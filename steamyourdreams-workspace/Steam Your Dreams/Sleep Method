@@ -1,0 +1,34 @@
+		@Override
+		public void run() {
+			// 1 billion nano seconds over 60 fps
+			// updates screen 60 times/second
+			double drawInterval = 1000000000/FPS;
+			double nextDrawTime = System.nanoTime() + drawInterval;
+			double remainingTime;
+			
+			while (gameThread != null) {
+				//updates game info
+				update();
+				//draws screen with given info
+				repaint();
+				
+				
+				try {
+					//pauses loop until remaining time is up
+					remainingTime = nextDrawTime - System.nanoTime();
+					remainingTime /= 1000000;
+					
+					if (remainingTime < 0) {
+						remainingTime = 0;
+					}
+					
+					Thread.sleep((long) remainingTime);
+					
+					nextDrawTime += drawInterval;
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		}

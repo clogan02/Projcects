@@ -1,0 +1,21 @@
+package object;
+
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+public class ObjectKey extends SuperObject{
+		
+	public ObjectKey() {
+		name = "Sign";
+				
+		try {
+			image = ImageIO.read(getClass().getResourceAsStream("/objects/Sign.png"));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		
+		hasCollision = true;
+		collectable = false;
+	}
+}

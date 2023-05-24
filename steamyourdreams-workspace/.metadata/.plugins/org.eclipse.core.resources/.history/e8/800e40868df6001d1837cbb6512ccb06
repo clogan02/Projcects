@@ -1,0 +1,15 @@
+package main;
+
+import entity.Entity;
+
+public class CollisionChecker {
+	GamePanel panel;
+	
+	public CollisionChecker(GamePanel panel) {
+		this.panel = panel;
+	}
+	
+	public void checkTile(Entity entity) {
+		
+	}
+}

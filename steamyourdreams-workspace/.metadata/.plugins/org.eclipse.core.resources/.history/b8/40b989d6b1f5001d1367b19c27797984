@@ -1,0 +1,44 @@
+package entity;
+
+import java.awt.Color;
+import java.awt.Graphics2D;
+
+import main.GamePanel;
+import main.KeyInput;
+
+public class Player extends Entity {
+	GamePanel panel;
+	KeyInput input;
+	
+	public Player(GamePanel panel, KeyInput input) {
+		this.panel = panel;
+		this.input = input;
+	}
+	
+	public void setDefaultValues() {
+		
+		x = 100;
+		y = 100;
+		speed = 5;
+	}
+	
+	public void update() {
+		if (input.up == true) {
+			y -= speed;
+		}
+		if (input.down == true) {
+			y += speed;
+		}
+		if (input.left == true) {
+			x -= speed;
+		}
+		if (input.right == true) {
+			x += speed;
+		}
+	}
+	
+	public void draw(Graphics2D g2) {
+		g2.setColor(Color.white);
+		g2.fillRect(x, y, gp.tileSize, gp.tileSize);
+	}
+}

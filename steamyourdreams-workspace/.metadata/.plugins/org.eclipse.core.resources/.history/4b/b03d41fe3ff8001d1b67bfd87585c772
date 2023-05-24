@@ -1,0 +1,45 @@
+package entity;
+
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import main.GamePanel;
+import main.UtilityTool;
+
+//parent of playerClass
+public class Entity {
+	GamePanel panel;
+	
+	public int worldX, worldY;
+	// sets character speed
+	public int speed;
+	public int spriteCounter = 0, spriteNumber = 1;
+	public boolean collided = false;
+	
+	public BufferedImage walkUp1, walkUp2, walkDown1, walkDown2, walkLeft, walkRight, idleUp, idleDown, idleLeft, idleRight;
+	public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
+	public int defaultSolidX, defaultSolidY;
+	public String direction;
+	
+	public Entity(GamePanel panel) {
+		this.panel = panel;
+	}
+	
+	public BufferedImage setup(String path) {
+		UtilityTool tool = new UtilityTool();
+		BufferedImage image = null;
+		
+		try {
+			image = ImageIO.read(getClass().getResourceAsStream(path));
+			image = tool.scaleImage(image, panel.tileSize, panel.tileSize);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return image;
+	}
+}

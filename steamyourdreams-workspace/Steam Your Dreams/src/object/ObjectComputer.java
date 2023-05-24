@@ -1,0 +1,26 @@
+package object;
+
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import main.GamePanel;
+
+public class ObjectComputer extends SuperObject{
+	
+	GamePanel panel;
+	
+	public ObjectComputer(GamePanel panel) {
+		this.panel = panel;
+		name = "Computer";
+				
+		try {
+			image = ImageIO.read(getClass().getResourceAsStream("/objects/Computer.png"));
+			tool.scaleImage(image, panel.tileSize, panel.tileSize);
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		
+		hasCollision = true;
+	}
+}

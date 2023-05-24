@@ -1,0 +1,3 @@
+INDEX VERSION 1.131+C:\Users\light\steamyourdreams-workspace\.metadata\.plugins\org.eclipse.jdt.core
+1058655083.index
+660170207.index

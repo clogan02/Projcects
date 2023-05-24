@@ -1,0 +1,25 @@
+package object;
+
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import main.GamePanel;
+
+public class ObjectBench extends SuperObject {
+	
+	GamePanel panel;
+	
+	public ObjectBench(GamePanel panel) {
+		name = "Bench";
+		
+		try {
+			image = ImageIO.read(getClass().getResourceAsStream("/objects/Bench.png"));
+			tool.scaleImage(image, panel.tileSize, panel.tileSize);
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		
+		hasCollision = false;
+	}
+}

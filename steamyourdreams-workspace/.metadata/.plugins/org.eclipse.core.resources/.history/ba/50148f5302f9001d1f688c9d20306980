@@ -1,0 +1,72 @@
+package main;
+
+import java.awt.Rectangle;
+
+import tile.TileManager;
+
+public class EventHandler {
+	
+	GamePanel panel;
+	EventRect eventRect[][];
+	
+	public EventHandler(GamePanel panel) {
+		this.panel = panel;
+		
+		eventRect = new EventRect[panel.worldCols][panel.worldRows];
+		
+		int col = 0, row = 0;
+		
+		while (col < panel.worldCols && row < panel.worldRows) {
+			eventRect[col][row] = new EventRect();
+			eventRect[col][row].x = 0; 
+			eventRect[col][row].y = 0;
+			eventRect[col][row].width = panel.tileSize;
+			eventRect[col][row].height = panel.tileSize;
+			eventRect[col][row].defaultRectX = eventRect[col][row].x;
+			eventRect[col][row].defaultRectY = eventRect[col][row].y;
+		}
+	}
+	
+	public void checkEvent() {
+		if (hit(9, 7, "right") || hit(9, 8, "right") || hit(9, 19, "right") || hit(9, 20, "right")) {
+			changeMap();
+		}
+	}
+	
+	public boolean hit(int eventCol, int eventRow, String direction) {
+		boolean hit = false;
+		
+		panel.player.solidArea.x += panel.player.worldX;
+		panel.player.solidArea.y += panel.player.worldY;
+		
+		eventRect.x += eventCol * panel.tileSize;
+		eventRect.y += eventRow * panel.tileSize;
+		
+		if (panel.player.solidArea.intersects(eventRect)) {
+			if (panel.player.direction.contentEquals(direction) || direction.contentEquals("any")) {
+				hit = true;
+			}
+		}
+		// resets solid area positions
+		panel.player.solidArea.x = panel.player.defaultSolidX;
+		panel.player.solidArea.y = panel.player.defaultSolidY;
+		eventRect.x = defaultRectX;
+		eventRect.y = defaultRectY;
+		
+		return hit;
+	}
+	
+	public void changeMap() {
+		if (panel.currMap == 1 ) {
+			panel.tiles = new TileManager(panel);
+			panel.currMap = 2;
+			panel.tiles.loadMap("/maps/map02.txt", 2);
+			panel.player.worldX = panel.tileSize * 1;
+			panel.player.worldY = panel.tileSize * 2;
+		} else {
+			panel.tiles = new TileManager(panel);
+			panel.currMap = 1;
+			panel.tiles.loadMap("/maps/map01.txt", 1);
+		}
+	}
+}

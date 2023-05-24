@@ -1,0 +1,11 @@
+package entity;
+
+import java.awt.image.BufferedImage;
+
+//parent of playerClass
+public class Entity {
+	public int x, y;
+	public int speed;
+	
+	public BufferedImage walkUp1, walkUp2, walkDown1, walkDown2, walkLeft, walkRight, idleUp, idleDown, idleLeft, idleRight;
+}

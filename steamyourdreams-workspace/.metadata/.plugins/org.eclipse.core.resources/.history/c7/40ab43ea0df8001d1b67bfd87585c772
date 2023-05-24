@@ -1,0 +1,21 @@
+package object;
+
+
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+public class ObjectDoor extends SuperObject{	
+		
+	public ObjectDoor() {
+		if (this.hasGlint == false) name = "Door";
+		else name = "Door (Glint)";
+			
+		try {
+			if (hasGlint == false) image = ImageIO.read(getClass().getResourceAsStream("/objects/Door.png"));
+			else image = ImageIO.read(getClass().getResourceAsStream("/objects/Door (Glint).png"));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+}

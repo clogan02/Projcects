@@ -1,0 +1,47 @@
+package main;
+
+import java.awt.Rectangle;
+
+public class EventHandler {
+	
+	GamePanel panel;
+	Rectangle eventRect;
+	
+	int defaultRectX, defaultRectY;
+	
+	public EventHandler(GamePanel panel) {
+		this.panel = panel;
+		eventRect = new Rectangle(23, 23, 2, 2);
+		defaultRectX = eventRect.x;
+		defaultRectY = eventRect.y;
+	}
+	
+	public void checkEvent() {
+		if (hit(9, 7, "right") || hit(9, 8, "right") || hit(9, 19, "right") || hit(9, 20, "right")) {
+			
+		}
+	}
+	
+	public boolean hit(int eventCol, int eventRow, String direction) {
+		boolean hit = false;
+		
+		panel.player.solidArea.x += panel.player.worldX;
+		panel.player.solidArea.y += panel.player.worldY;
+		
+		eventRect.x += eventCol * panel.tileSize;
+		eventRect.y += eventRow * panel.tileSize;
+		
+		if (panel.player.solidArea.intersects(eventRect)) {
+			if (panel.player.direction.contentEquals(direction) || direction.contentEquals("any")) {
+				hit = true;
+			}
+		}
+		// resets solid area positions
+		panel.player.solidArea.x = panel.player.defaultSolidX;
+		panel.player.solidArea.y = panel.player.defaultSolidY;
+		eventRect.x = defaultRectX;
+		eventRect.y = defaultRectY;
+		
+		return hit;
+	}
+}

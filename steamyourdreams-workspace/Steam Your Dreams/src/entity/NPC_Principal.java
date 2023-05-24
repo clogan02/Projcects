@@ -1,0 +1,27 @@
+package entity;
+
+import main.GamePanel;
+
+public class NPC_Principal extends Entity {
+	public NPC_Principal(GamePanel panel) {
+		super(panel);
+		
+		direction = "down";
+		speed = 0;
+		isPrincipal = true;
+		getNPCImage();
+		setDialogue();
+	}
+	
+	public void getNPCImage() {
+		idleDown = setup("/NPCs/Principal Idle Down.png");
+	}
+	
+	public void setDialogue() {
+		dialogues[1] = "Thank you! You have saved me!";
+	}
+	
+	public void speak() {
+		super.speak();
+	}
+}
