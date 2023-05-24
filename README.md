@@ -1,4 +1,4 @@
-# Projcects
+# Projects
 Personal Coding Projects
 
 This project was created for the Steam Your Dreams internship project submission. 
